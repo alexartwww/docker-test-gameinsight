@@ -1,0 +1,17 @@
+server
+{
+	listen 80;
+	server_name testgameinsight;
+	access_log  /var/log/nginx/testgameinsight.access.log;
+	error_log   /var/log/nginx/testgameinsight.error.log info;
+
+	client_max_body_size 1024m;
+
+	location /
+	{
+		proxy_set_header        Host testgameinsight;
+		proxy_set_header        X-Real-IP       $remote_addr;
+		proxy_set_header        X-Forwarded-For $remote_addr;
+		proxy_pass              http://127.0.0.1:8100;
+	}
+}
