@@ -6,7 +6,7 @@ services:
     command: ["echo", "TestGameInsight"]
     volumes:
     - ./project/conf/php-cli.ini:/etc/php/7.0/cli/php.ini
-    - ./project/conf/xdebug.ini:/etc/php/7.0/cli/conf.d/20-xdebug.ini
+    - ./project/conf/20-xdebug.ini:/etc/php/7.0/cli/conf.d/20-xdebug.ini
     - ./project/html:/var/www/html
   php-fpm:
     build: project/html
@@ -28,8 +28,7 @@ services:
       cron -f -L 7
     volumes:
     - ./project/conf/php-cli.ini:/etc/php/7.0/cli/php.ini
-    - ./project/conf/xdebug.ini:/etc/php/7.0/cli/conf.d/20-xdebug.ini
-    - ./project/logs:/var/log/php-fpm
+    - ./project/conf/20-xdebug.ini:/etc/php/7.0/cli/conf.d/20-xdebug.ini
     - ./project/html:/var/www/html
     restart: ${CRON_RESTART}
   nginx:
